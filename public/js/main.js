@@ -125,10 +125,18 @@
 const urlParams = window.location.href.toString()
 const uri = 'http://localhost:4000/'
 const clr = '#DFB163'
+const data = new Date().getFullYear()
+
+function time(yearAtual, initialTime){
+    return yearAtual - initialTime
+}
 
 switch(urlParams){
     case uri:
         home.style.color = clr
+        timesSpan.textContent = time(data, 2008)
+        timesSpan2.textContent = time(data, 2008)
+        timesSpan3.textContent = time(data, 2008)
         break
     case uri + 'about':
         about.style.color = clr

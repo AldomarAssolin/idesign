@@ -32,7 +32,7 @@ app.set('views', path.join(__dirname, '/pages'));
 
 app.get('/',(req,res)=>{
     postSlide.find({}).sort({'_id': -1}).exec(function(err,posts){
-        console.log('posts do mongo: ' + posts[0])
+        //console.log('posts do mongo: ' + posts[0])
         posts = posts.map(function(val){
             return{
                 titulo:val.titulo,
@@ -71,10 +71,6 @@ app.get('/blog',(req,res)=>{
 app.get('/single',(req,res)=>{
     res.render('single')
 })
-
-// app.get('/about',(req,res)=>{
-//     res.render('about')
-// })
 
 app.listen(port,()=>{
     console.log(`Servidor rodando na porta ${port}`)
