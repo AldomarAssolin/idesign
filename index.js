@@ -7,7 +7,7 @@ const app = express()
 const postSlide = require('./apis/slideSchema')
 
 const nameDB = 'manex'
-const passDB = 'alodmar319'
+const passDB = ''
 const  accessDB = 'siteIDisegn'
 
 
