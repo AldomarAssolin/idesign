@@ -8,7 +8,8 @@ const postSlide = require('./apis/slideSchema')
 
 const nameDB = 'manex'
 const passDB = 'alodmar319'
-const accessDB = 'siteIDisegn'
+const  accessDB = 'siteIDisegn'
+
 
 const mongoDB = `mongodb+srv://${accessDB}:${passDB}@cluster0.6zjao.mongodb.net/${nameDB}?retryWrites=true&w=majority`
 
@@ -16,6 +17,7 @@ mongoose.connect(mongoDB,{useNewUrlParser:true,useUnifiedTopology:true}).then(fu
     console.log(`Conectado ao banco de dados MongoDb com sucesso!`)
 }).catch(function(err){
     console.log(err.message)
+    console.log('Falha na conexão com o banco de dados!')
 })
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
