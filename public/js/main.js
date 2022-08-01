@@ -121,10 +121,32 @@
     
 })(jQuery);
 
+const datatheme = document.querySelector('html')
+//datatheme.setAttribute('data-theme', 'yellow')
+const btnBlue = document.querySelector('.blue')
+const btnYellow = document.querySelector('.yellow')
+const btnGreen = document.querySelector('.green')
+const btnPink = document.querySelector('.pink')
+
+btnBlue.addEventListener('click', ()=>{
+    datatheme.setAttribute('data-theme', 'blue')
+})
+
+btnYellow.addEventListener('click', ()=>{
+    datatheme.setAttribute('data-theme', 'yellow')
+})
+
+btnGreen.addEventListener('click', ()=>{
+    datatheme.setAttribute('data-theme', 'green')
+})
+
+btnPink.addEventListener('click', ()=>{
+    datatheme.setAttribute('data-theme', 'pink')
+})
 
 const urlParams = window.location.href.toString()
 const uri = 'http://localhost:4000/'
-const clr = '#DFB163'
+const clr = 'var(--primary)'
 const data = new Date().getFullYear()
 
 function time(yearAtual, initialTime){

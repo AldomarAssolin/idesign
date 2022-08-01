@@ -6,6 +6,8 @@ const port = '4000'
 const app = express()
 const postSlide = require('./apis/slideSchema')
 
+const chalk = require('chalk')
+
 const nameDB = 'manex'
 const passDB = ''
 const  accessDB = 'siteIDisegn'
@@ -14,10 +16,10 @@ const  accessDB = 'siteIDisegn'
 const mongoDB = `mongodb+srv://${accessDB}:${passDB}@cluster0.6zjao.mongodb.net/${nameDB}?retryWrites=true&w=majority`
 
 mongoose.connect(mongoDB,{useNewUrlParser:true,useUnifiedTopology:true}).then(function(){
-    console.log(`Conectado ao banco de dados MongoDb com sucesso!`)
+    console.log(chalk.bgGreen.white(`Conectado ao banco de dados MongoDb com sucesso!`))
 }).catch(function(err){
-    console.log(err.message)
-    console.log('Falha na conexão com o banco de dados!')
+    console.log(chalk.bgRed(err.message))
+    console.log(chalk.bgRed('Falha na conexão com o banco de dados!'))
 })
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
