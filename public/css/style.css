@@ -9675,10 +9675,15 @@ h6 {
 .portfolio-item .portfolio-img {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 17rem;
   bottom: 0px;
   left: 0;
   transition: .5s;
+}
+
+.portfolio-item .portfolio-img img{
+  width: 100%;
+  height: 100%;
 }
 
 .portfolio-item:hover .portfolio-img {

@@ -122,7 +122,6 @@
 })(jQuery);
 
 const datatheme = document.querySelector('html')
-//datatheme.setAttribute('data-theme', 'yellow')
 const btnBlue = document.querySelector('.blue')
 const btnYellow = document.querySelector('.yellow')
 const btnGreen = document.querySelector('.green')
