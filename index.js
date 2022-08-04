@@ -6,15 +6,19 @@ const port = 4000
 const app = express()
 const postSlide = require('./apis/slideSchema')
 const portifolioPosts = require('./apis/portifolioSchema')
+const team = require('./apis/team')
+
 
 const chalk = require('chalk')
 
 const nameDB = 'manex'
-const passDB = ''
-const  accessDB = 'siteIDisegn'
+const passDB = 'alodmar319'
+const accessDB = 'siteIDisegn'
+const cluster = 'cluster0.6zjao'
 
+//mongodb+srv://<userDataBase>:<password>@<cluster>.mongodb.net/<dataBaseName>?retryWrites=true&w=majority
 
-const mongoDB = `mongodb+srv://${accessDB}:${passDB}@cluster0.6zjao.mongodb.net/${nameDB}?retryWrites=true&w=majority`
+const mongoDB = `mongodb+srv://${accessDB}:${passDB}@${cluster}.mongodb.net/${nameDB}?retryWrites=true&w=majority`
 
 mongoose.connect(mongoDB,{useNewUrlParser:true,useUnifiedTopology:true}).then(function(){
     console.log(chalk.green(`Conectado ao banco de dados MongoDb com sucesso!`))
@@ -34,7 +38,22 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, '/pages'));
 
 app.get('/about',(req,res)=>{
-    res.render('about')
+    team.find({}).exec((err,postsTeam)=>{
+        postsTeam = postsTeam.map((val)=>{
+            return{
+                name:val.name,
+                office:val.office,
+                image:val.image,
+                link1:val.link1,
+                link2:val.link2,
+                link3:val.link4,
+                icon1:val.icon1,
+                icon2:val.icon2,
+                icon3:val.icon3
+            }
+        })
+        res.render('about',{postsTeam:postsTeam})
+    })
 })
 
 app.get('/service',(req,res)=>{
@@ -45,7 +64,7 @@ app.get('/contact',(req,res)=>{
     res.render('contact')
 })
 
-app.get('/project',(req,res)=>{
+app.get('/project', (req,res)=>{
     portifolioPosts.find({}).exec((err,postsPort)=>{
         postsPort = postsPort.map((val)=>{
             return{
@@ -54,7 +73,6 @@ app.get('/project',(req,res)=>{
                 image:val.image
             }
         })
-        console.log(postsPort)
         res.render('project',{postsPort:postsPort})
     })
 })
@@ -65,20 +83,6 @@ app.get('/blog',(req,res)=>{
 
 app.get('/single',(req,res)=>{
     res.render('single')
-})
-
-app.get('/partials/', (req,res)=>{
-    portifolioPosts.find({}).exec((err,postsPort)=>{
-        postsPort = postsPort.map((val)=>{
-            return{
-                category:val.category,
-                projectName:val.projectName,
-                image:val.image
-            }
-        })
-        console.log(postsPort)
-        res.render('OurProjects',{postsPort:postsPort})
-    })
 })
 
 app.get('/',(req,res)=>{
@@ -95,6 +99,7 @@ app.get('/',(req,res)=>{
                 views:val.Number
             }
         })
+        
         portifolioPosts.find({}).sort({'_id': -1}).limit(6).exec((err,postsPort)=>{
             postsPort = postsPort.map((val)=>{
                 return{
@@ -103,13 +108,27 @@ app.get('/',(req,res)=>{
                     image:val.image
                 }
             })
-            res.render('home',{posts:posts,postsPort:postsPort})
+            team.find({}).exec((err,postsTeam)=>{
+                postsTeam = postsTeam.map((val)=>{
+                    return{
+                        name:val.name,
+                        office:val.office,
+                        image:val.image,
+                        link1:val.link1,
+                        link2:val.link2,
+                        link3:val.link4,
+                        icon1:val.icon1,
+                        icon2:val.icon2,
+                        icon3:val.icon3
+                    }
+                })
+                res.render('home',{posts:posts,postsPort:postsPort,postsTeam:postsTeam})
+            })
         })
     })
 })
 
 //usar o express.Router(), para definir as rotas.
-//verificar como nao repitir o category...
 
 
 

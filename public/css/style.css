@@ -9619,6 +9619,10 @@ h6 {
   color: var(--primary-hover);
 }
 
+.social-media i:hover{
+  color: var(--primary);
+}
+
 @media (max-width: 991.98px) {
   .navbar-dark .navbar-nav .nav-link {
     padding: 10px 15px;
@@ -9649,6 +9653,11 @@ h6 {
   z-index: 1;
 }
 
+.team-carousel .team-img{
+  width: 13.7rem;
+  height: 15rem;
+}
+
 .team-carousel .owl-nav .owl-prev,
 .team-carousel .owl-nav .owl-next,
 .service-carousel .owl-nav .owl-prev,
@@ -9658,7 +9667,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--prev-hover);
+  color: var(--primary);
   background: var(--bg-prev-hover);
   font-size: 22px;
   opacity: .1;
@@ -9735,7 +9744,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--bg-prev-hover);
+  color: var(--primary);
   background: transparent;
   border: 1px solid var(--bg-prev-hover);
   font-size: 22px;
